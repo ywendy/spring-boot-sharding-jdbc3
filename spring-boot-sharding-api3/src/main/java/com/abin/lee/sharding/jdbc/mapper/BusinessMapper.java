@@ -1,4 +1,4 @@
-package com.abin.lee.sharding.jdbc.mapper.business;
+package com.abin.lee.sharding.jdbc.mapper;
 
 import com.abin.lee.sharding.jdbc.entity.Business;
 import org.apache.ibatis.annotations.Param;

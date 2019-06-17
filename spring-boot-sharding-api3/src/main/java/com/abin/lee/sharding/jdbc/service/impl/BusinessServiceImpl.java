@@ -2,7 +2,7 @@ package com.abin.lee.sharding.jdbc.service.impl;
 
 import com.abin.lee.sharding.jdbc.common.generator.SnowflakeIdWorker;
 import com.abin.lee.sharding.jdbc.entity.Business;
-import com.abin.lee.sharding.jdbc.mapper.business.BusinessMapper;
+import com.abin.lee.sharding.jdbc.mapper.BusinessMapper;
 import com.abin.lee.sharding.jdbc.service.BusinessService;
 import org.springframework.stereotype.Service;
 

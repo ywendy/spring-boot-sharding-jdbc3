@@ -9,6 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 /**
  * Created by abin on 2018/8/16.
  */
@@ -41,13 +43,13 @@ public class OrderController {
     @ApiOperation(value = "根据订单id查询订单", notes = "根据订单id查询订单")
     @ApiImplicitParam(name =  "findById", value = "随机参数", paramType = "query", required = true, dataType = "Integer")
     @PostMapping(value = "/findById")
-    public String findById(Long id) {
-        String result = "" ;
+    public Map<String, Object> findById(Long id) {
+        Map<String, Object> result = null ;
         try {
             result = this.orderService.findById(id);
         } catch (Exception e) {
             log.error("findById--id=" + id + "e=" + e);
-            return "FAILURE";
+//            return "FAILURE";
         }
         return result;
     }
