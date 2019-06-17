@@ -1,4 +1,4 @@
-package com.abin.lee.sharding.jdbc.business;
+package com.abin.lee.sharding.jdbc.item.test;
 
 import com.abin.lee.sharding.jdbc.common.util.HttpClientUtil;
 import com.google.common.primitives.Longs;
@@ -22,16 +22,16 @@ import java.util.List;
  */
 public class FindByUserIdTest {
 
-    private static final String httpURL = "http://localhost:9061/business/findByUserId";
+    private static final String httpURL = "http://localhost:9061/orderItem/findByUserId";
 
     @Test
     public void testOrderAdd() {
         try {
             CloseableHttpClient httpClient = HttpClientUtil.getHttpClient();
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-
-            Long userId = Longs.tryParse("8954401") ;
+            Long userId = Longs.tryParse("36872921432719361") ;
             nvps.add(new BasicNameValuePair("userId", userId+""));
+
 
             HttpPost httpPost = new HttpPost(httpURL);
 //            httpPost.setHeader("Cookie", getCookie());

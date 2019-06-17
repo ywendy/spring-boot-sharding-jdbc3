@@ -1,6 +1,7 @@
 package com.abin.lee.sharding.jdbc.order.test;
 
 import com.abin.lee.sharding.jdbc.common.util.HttpClientUtil;
+import com.google.common.primitives.Longs;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -28,9 +29,9 @@ public class FindByIdTest {
         try {
             CloseableHttpClient httpClient = HttpClientUtil.getHttpClient();
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            Long id = 36872841483255810L;
-            nvps.add(new BasicNameValuePair("id", id+""));
 
+            Long id = Longs.tryParse("36883157145878533") ;
+            nvps.add(new BasicNameValuePair("id", id+""));
 
             HttpPost httpPost = new HttpPost(httpURL);
 //            httpPost.setHeader("Cookie", getCookie());

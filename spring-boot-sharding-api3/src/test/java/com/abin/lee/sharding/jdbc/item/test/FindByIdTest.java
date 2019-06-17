@@ -1,6 +1,7 @@
-package com.abin.lee.sharding.jdbc.order.test;
+package com.abin.lee.sharding.jdbc.item.test;
 
 import com.abin.lee.sharding.jdbc.common.util.HttpClientUtil;
+import com.google.common.primitives.Longs;
 import org.apache.http.Consts;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
@@ -19,17 +20,18 @@ import java.util.List;
  * spring-boot-start2
  * com.abin.lee.spring.boot.mybatis.test
  */
-public class OrderFindTest {
+public class FindByIdTest {
 
-    private static final String httpURL = "http://localhost:9061/order/find";
+    private static final String httpURL = "http://localhost:9061/business/findById";
 
     @Test
-    public void testOrderFind() {
+    public void testOrderAdd() {
         try {
             CloseableHttpClient httpClient = HttpClientUtil.getHttpClient();
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
-            int id = (int)(Math.random()*10000000L);
+            Long id = Longs.tryParse("36872921432719361") ;
             nvps.add(new BasicNameValuePair("id", id+""));
+
 
             HttpPost httpPost = new HttpPost(httpURL);
 //            httpPost.setHeader("Cookie", getCookie());

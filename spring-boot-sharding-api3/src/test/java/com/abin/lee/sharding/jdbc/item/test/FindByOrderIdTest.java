@@ -1,4 +1,4 @@
-package com.abin.lee.sharding.jdbc.business;
+package com.abin.lee.sharding.jdbc.item.test;
 
 import com.abin.lee.sharding.jdbc.common.util.HttpClientUtil;
 import com.google.common.primitives.Longs;
@@ -20,18 +20,18 @@ import java.util.List;
  * spring-boot-start2
  * com.abin.lee.spring.boot.mybatis.test
  */
-public class FindByUserIdTest {
+public class FindByOrderIdTest {
 
-    private static final String httpURL = "http://localhost:9061/business/findByUserId";
+    private static final String httpURL = "http://localhost:9061/orderItem/findByOrderId";
 
     @Test
     public void testOrderAdd() {
         try {
             CloseableHttpClient httpClient = HttpClientUtil.getHttpClient();
             List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+            Long orderId = Longs.tryParse("36872921432719361") ;
+            nvps.add(new BasicNameValuePair("orderId", orderId+""));
 
-            Long userId = Longs.tryParse("8954401") ;
-            nvps.add(new BasicNameValuePair("userId", userId+""));
 
             HttpPost httpPost = new HttpPost(httpURL);
 //            httpPost.setHeader("Cookie", getCookie());
