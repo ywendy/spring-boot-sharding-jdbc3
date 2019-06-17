@@ -43,7 +43,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 @Configuration
 @EnableTransactionManagement
-@MapperScan(basePackages = {"com.abin.lee.sharding.jdbc.mapper","com.abin.lee.sharding.jdbc.mapper.business"})
+@MapperScan(basePackages = {"com.abin.lee.sharding.jdbc.mapper"})
 public class DataSourcesConfig {
 
     private final Logger log = LoggerFactory.getLogger(DataSourcesConfig.class);
