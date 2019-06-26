@@ -81,7 +81,7 @@ public class CuratorClient {
 
     public static void main(String[] args) throws Exception {
         new CuratorClient().init();
-      
+
         Integer workId = new CuratorClient().findWorkId();
         System.out.println("workId="+workId);
 
