@@ -3,6 +3,7 @@ package com.abin.lee.sharding.jdbc.common.curator;
 import com.abin.lee.sharding.jdbc.common.util.AddressUtils;
 import com.google.common.primitives.Ints;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
@@ -56,6 +57,9 @@ public class CuratorClient {
 
     public boolean findPath(String ip, CuratorFramework client) throws Exception {
         List<String> children = client.getChildren().forPath(parentPath); //获取子节点
+        if(CollectionUtils.isNotEmpty(children) && children.size()>1){
+            throw new RuntimeException("parentPath=" + parentPath +", zkpath > 1 ");
+        }
         for(String child : children) {
             if(StringUtils.startsWith(child, ip)){
                 return Boolean.TRUE;
@@ -67,6 +71,9 @@ public class CuratorClient {
     public Integer findWorkId() throws Exception {
         String ip = AddressUtils.getInnetIp();
         List<String> children = client.getChildren().forPath(parentPath); //获取子节点
+        if(CollectionUtils.isNotEmpty(children) && children.size()>1){
+            throw new RuntimeException("parentPath=" + parentPath +", zkpath > 1 ");
+        }
         for(String child : children) {
             if(StringUtils.startsWith(child, ip)){
                 String workId = child.substring(child.indexOf("_")+1, child.length());
