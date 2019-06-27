@@ -11,6 +11,7 @@ import org.apache.curator.retry.ExponentialBackoffRetry;
 import org.apache.zookeeper.CreateMode;
 import org.apache.zookeeper.data.Stat;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.List;
  * Created by lee on 2019/6/26.
  */
 @Slf4j
+@Component
 public class CuratorClient {
 
     @Value("${curator.address}")
