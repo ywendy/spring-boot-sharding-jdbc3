@@ -1,4 +1,4 @@
-package com.abin.lee.sharding.jdbc.common.test;
+package com.abin.lee.sharding.jdbc.common.test.snowflake;
 
 /**
  * 1 34 6 12 11
