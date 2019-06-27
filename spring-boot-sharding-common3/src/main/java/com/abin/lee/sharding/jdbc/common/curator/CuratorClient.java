@@ -43,28 +43,30 @@ public class CuratorClient {
 
     @PostConstruct
     public void init() throws Exception {
-        CuratorFramework client = this.create();
-        String ip = AddressUtils.getInnetIp();
-        if (StringUtils.isBlank(ip)) {
-            throw new RuntimeException("get ip error");
-        }
-        Stat stat = client.checkExists().forPath(parentPath);
-        if (null == stat) {
-            log.info("parentPath=" + parentPath + ", is not exists, create it");
-            client.create()
-                    .creatingParentsIfNeeded()
-                    .withMode(CreateMode.PERSISTENT_SEQUENTIAL)
-                    .forPath(parentPath + "/" + ip + "_", ip.getBytes());
-        } else {
-            boolean flag = this.findPath(ip, client);
-            if(!flag){
+        synchronized(CuratorClient.class) {
+            CuratorFramework client = this.create();
+            String ip = AddressUtils.getInnetIp();
+            if (StringUtils.isBlank(ip)) {
+                throw new RuntimeException("get ip error");
+            }
+            Stat stat = client.checkExists().forPath(parentPath);
+            if (null == stat) {
+                log.info("parentPath=" + parentPath + ", is not exists, create it");
                 client.create()
                         .creatingParentsIfNeeded()
                         .withMode(CreateMode.PERSISTENT_SEQUENTIAL)
                         .forPath(parentPath + "/" + ip + "_", ip.getBytes());
+            } else {
+                boolean flag = this.findPath(ip, client);
+                if (!flag) {
+                    client.create()
+                            .creatingParentsIfNeeded()
+                            .withMode(CreateMode.PERSISTENT_SEQUENTIAL)
+                            .forPath(parentPath + "/" + ip + "_", ip.getBytes());
+                }
+                Long workId = this.findWorkId();
+                log.info("parentPath=" + parentPath + ", is exists, workId=" + workId);
             }
-            Long workId = this.findWorkId();
-            log.info("parentPath=" + parentPath + ", is exists, workId=" + workId);
         }
 
     }
