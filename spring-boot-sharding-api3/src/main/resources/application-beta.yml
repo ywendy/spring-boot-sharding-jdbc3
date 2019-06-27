@@ -93,3 +93,8 @@ swagger:
         show: true
 
 
+curator:
+        address: 10.96.79.68:2181
+
+
+

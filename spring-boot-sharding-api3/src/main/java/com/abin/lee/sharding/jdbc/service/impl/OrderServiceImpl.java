@@ -1,6 +1,6 @@
 package com.abin.lee.sharding.jdbc.service.impl;
 
-import com.abin.lee.sharding.jdbc.common.generator.SnowflakeIdWorker;
+import com.abin.lee.sharding.jdbc.common.generator.GeneratorId;
 import com.abin.lee.sharding.jdbc.common.util.JsonUtil;
 import com.abin.lee.sharding.jdbc.entity.Order;
 import com.abin.lee.sharding.jdbc.entity.OrderItem;
@@ -25,12 +25,14 @@ public class OrderServiceImpl implements OrderService {
     OrderMapper orderMapper;
     @Resource
     OrderItemService orderItemService;
+    @Resource
+    GeneratorId generatorId;
 
     @Transactional
     @Override
-    public void insert(Long userId) {
+    public void insert(Long userId) throws Exception {
         Order order = new Order();
-        Long id = SnowflakeIdWorker.getId(userId.longValue());
+        Long id = this.generatorId.getId(userId);
         order.setId(id);
         order.setUserId(userId);
         order.setStatus("0");

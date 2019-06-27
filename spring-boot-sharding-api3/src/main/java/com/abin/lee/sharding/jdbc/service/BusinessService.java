@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface BusinessService {
 
-    void insert(Integer userId);
+    void insert(Integer userId) throws Exception;
 
     Business findById(Long id);
 

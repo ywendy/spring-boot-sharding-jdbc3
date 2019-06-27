@@ -1,6 +1,6 @@
 package com.abin.lee.sharding.jdbc.service.impl;
 
-import com.abin.lee.sharding.jdbc.common.generator.SnowflakeIdWorker;
+import com.abin.lee.sharding.jdbc.common.generator.GeneratorId;
 import com.abin.lee.sharding.jdbc.entity.Business;
 import com.abin.lee.sharding.jdbc.mapper.BusinessMapper;
 import com.abin.lee.sharding.jdbc.service.BusinessService;
@@ -17,12 +17,13 @@ public class BusinessServiceImpl implements BusinessService {
 
     @Resource
     BusinessMapper businessMapper ;
-
+    @Resource
+    GeneratorId generatorId;
 
     @Override
-    public void insert(Integer userId) {
+    public void insert(Integer userId) throws Exception {
         Business business = new Business();
-        Long id = SnowflakeIdWorker.getId(userId.longValue());
+        Long id = this.generatorId.getId(userId.longValue());
 
         business.setBusinessId(id);
         business.setUserId(userId);

@@ -7,7 +7,7 @@ import java.util.Map;
  */
 public interface OrderService {
 
-    void insert(Long userId);
+    void insert(Long userId) throws Exception;
 
     Map<String, Object> findById(Long id);
 

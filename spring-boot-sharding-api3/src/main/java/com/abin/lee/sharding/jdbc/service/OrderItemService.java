@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface OrderItemService {
 
-    void insert(Long orderId,Long userId);
+    void insert(Long orderId,Long userId) throws Exception;
 
     List<OrderItem> findByOrderId(Long orderId);
 
